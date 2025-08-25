@@ -1,0 +1,61 @@
+﻿<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: var(--accent-green) !important;" data-bs-theme="light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Mental Notes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav d-flex gap-5">
+                @* <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li> *@
+                @* <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                </NavLink> *@
+                <NavLink class="nav-link" href="episodes">
+                    <i class="fa-solid fa-microphone" /> Episodes
+                </NavLink>
+                <NavLink class="nav-link" href="biosAndBooks">
+                    <i class="fa-solid fa-book-open-reader" /> Bios&Books
+                </NavLink>
+                <NavLink class="nav-link" href="research">
+                    <i class="fa-solid fa-magnifying-glass" /> Research
+                </NavLink>
+                <NavLink class="nav-link" href="contact">
+                    <i class="fa-solid fa-pen-fancy" /> Contact
+                </NavLink>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    @* <div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Mental Notes</a>
+    </div>
+</div> *@
+
+@* <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+
+        <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+    </nav> 
+    </div>*@
+
+
