@@ -1,0 +1,48 @@
+﻿@page "/contact"
+@using System.Text.RegularExpressions
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@using Resend
+@using global::Pages
+
+@inherits ContactBase
+
+@rendermode InteractiveServer
+
+<div class="title-container">
+    <h1>Contact</h1>
+</div>
+
+<EditForm Model="@formModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="contact-form">
+        <div>
+            <label for="name">Name</label>
+            <InputText id="name" class="form-control" @bind-Value="formModel.Name" />
+            <ValidationMessage For="@(() => formModel.Name)" />
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <InputText id="email" class="form-control" @bind-Value="formModel.Email" />
+            <ValidationMessage For="@(() => formModel.Email)" />
+        </div>
+        <div>
+            <label for="subject">Subject</label>
+            <InputText id="subject" class="form-control" @bind-Value="formModel.Subject" />
+            <ValidationMessage For="@(() => formModel.Subject)" />
+        </div>
+        <div>
+            <label for="message">Message</label>
+            <InputTextArea id="message" class="form-control" @bind-Value="formModel.Message" rows="5" />
+            <ValidationMessage For="@(() => formModel.Message)" />
+        </div>
+
+        <button class="btn btn-primary mt-3" type="submit" disabled="@(isSubmitting || isCooldown)">Send</button>
+        @if (!string.IsNullOrEmpty(submitResult))
+        {
+            <div class="mt-2">@submitResult</div>
+        }
+    </div>
+</EditForm>

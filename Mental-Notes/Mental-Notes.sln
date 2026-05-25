@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36408.4 d17.14
+VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mental-Notes", "Mental-Notes.csproj", "{B7A98FE8-859C-4EB1-9CE4-08D136612526}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminApp", "..\AdminApp\AdminApp.csproj", "{FA06A152-966A-4B93-B718-1A278DC02929}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedData", "..\SharedData\SharedData.csproj", "{4954FB4E-49E4-41CC-94BA-4DC5DA7E51AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{B7A98FE8-859C-4EB1-9CE4-08D136612526}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7A98FE8-859C-4EB1-9CE4-08D136612526}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7A98FE8-859C-4EB1-9CE4-08D136612526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA06A152-966A-4B93-B718-1A278DC02929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA06A152-966A-4B93-B718-1A278DC02929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA06A152-966A-4B93-B718-1A278DC02929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA06A152-966A-4B93-B718-1A278DC02929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4954FB4E-49E4-41CC-94BA-4DC5DA7E51AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4954FB4E-49E4-41CC-94BA-4DC5DA7E51AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4954FB4E-49E4-41CC-94BA-4DC5DA7E51AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4954FB4E-49E4-41CC-94BA-4DC5DA7E51AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

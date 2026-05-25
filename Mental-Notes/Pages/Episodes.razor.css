@@ -1,0 +1,10 @@
+﻿.episodes-list {
+    padding: 0 2rem;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .episodes-list {
+        padding: 0;
+    }
+}

@@ -1,0 +1,155 @@
+.home-hero{
+    display:flex;
+    gap:3rem;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    margin:2rem 0;
+    padding:1.5rem 2rem;
+    background:linear-gradient(135deg,#E0F7FA 0%,#E8F5E9 100%);
+    border-radius:1.5rem;
+    box-shadow:0 4px 24px rgba(0,0,0,.08);
+}
+
+.home-hero-image img{
+    width:260px;
+    max-width:40vw;
+    border-radius:1rem;
+    object-fit:cover;box-shadow:0 6px 20px rgba(0,0,0,.18);
+    border:4px solid #fff;
+}
+
+.home-hero-text{
+    flex:1;
+    min-width:300px;
+}
+
+.title {
+    color: #007bff;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.intro-longform {
+    padding-right: 1rem;
+    scrollbar-width: thin;
+}
+
+    .intro-longform p {
+        line-height:1.5;
+    }
+
+    .intro-longform ul {
+        padding-left:1.2rem;
+    }
+
+    .intro-longform a {
+        color:#007bff;
+        text-decoration:underline;
+    }
+
+    .intro-longform .thanks {
+        margin-top:1.5rem;
+        font-style:italic;
+    }
+
+.section-heading {
+    font-weight: 600;
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+.section-wrapper {
+    padding:0 2rem 3rem;
+}
+
+.home-socials .social-grid.social-grid-large {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8rem;
+}
+
+    .home-socials .social-grid.social-grid-large a {
+        font-size: 7rem; /* bigger icon */
+        padding: 1.2rem; /* larger click target */
+        min-height: 110px;
+    }
+
+        .home-socials .social-grid.social-grid-large a i {
+            line-height: 1;
+        }
+
+/* Remove uniform icon color (override existing rule) */
+.home-socials a {
+    color: inherit; /* or simply delete the original color line */
+}
+
+    /* Brand colors */
+    .home-socials a .fa-youtube {
+        color: #FF0000;
+    }
+
+    .home-socials a .fa-spotify {
+        color: #1DB954;
+    }
+
+    .home-socials a .fa-itunes-note,
+    .home-socials a .fa-apple {
+        color: #A6B1B7; /* Apple often uses neutral mono */
+    }
+
+    /* Optional hover: slight scale without changing brand color */
+    .home-socials a:hover {
+        transform: translateY(-4px) scale(1.05);
+    }
+
+    /* Optional: Instagram gradient (replaces solid color) */
+    .home-socials a .fa-instagram {
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+.about-btn {
+    display: none;
+}
+
+@media (max-width:900px) {
+    .intro-longform {
+        max-height: none;
+        padding-top: 1rem;
+    }
+
+    .section-wrapper {
+        padding: 0;
+    }
+
+    .home-hero {
+        padding: 1.25rem 1.25rem;
+    }
+
+    .home-hero-image img {
+        width: 200px;
+    }
+}
+
+@media (max-width:600px) {
+    .home-hero-image img {
+        width: 100%;
+        max-width: 100%;
+        height: auto
+    }
+
+    .home-socials .social-grid.social-grid-large {
+        padding: 0;
+    }
+
+        .home-socials .social-grid.social-grid-large a {
+            font-size: 2.6rem;
+            padding: 1rem;
+            min-height: 100px;
+        }
+
+    .about-btn {
+        display: block;
+    }
+}

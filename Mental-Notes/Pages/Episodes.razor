@@ -1,0 +1,57 @@
+﻿@page "/episodes"
+@inject NavigationManager NavManager
+
+@rendermode InteractiveServer
+
+@inherits EpisodesBase
+
+<div class="title-container">
+    <h1>Episodes</h1>
+</div>
+
+@if (EpisodeIds == null)
+{
+    <div class="content-loading">Loading...</div>
+}
+else if (EpisodeIds.Count == 0)
+{
+    <div class="content-empty">No episodes found.</div>
+}
+else
+{
+    <div class="episodes-list">
+        @foreach (var episodeId in EpisodeIds)
+        {
+            <EpisodeCard EpisodeId="episodeId"/>
+            @* <div class="episode-card" @onclick="@(() => NavManager.NavigateTo($"/episodeDetails/{ep.Id}"))" tabindex="0">
+                <div class="episode-card-header">
+                    <span class="episode-title">@ep.Title</span>
+                    <span class="episode-date">@ep.Published.ToString("MMM dd, yyyy")</span>
+                </div>
+                <div class="episode-info">
+                    <div class="images">
+                        @if (ep.Author?.Picture != null)
+                        {
+                            <img class="author-img" src="data:image/png;base64,@Convert.ToBase64String(ep.Author.Picture)" alt="Author" />
+                        }
+                        @if (ep.Book?.Picture != null)
+                        {
+                            <img class="book-img" src="data:image/png;base64,@Convert.ToBase64String(ep.Book.Picture)" alt="Book" />
+                        }
+                    </div>
+                    <div class="names-container">
+                        <div class="author-name">@ep.Author?.Name</div>
+                        @if (!string.IsNullOrWhiteSpace(ep.Book?.Name))
+                        {
+                            <div class="book-name">@ep.Book?.Name</div>
+                        }
+                    </div>
+                </div>
+                
+                <div class="description">
+                    @ep.Description
+                </div>
+            </div> *@
+        }
+    </div>
+}

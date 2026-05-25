@@ -1,0 +1,91 @@
+﻿@page "/biosAndBooksDetails/{Id:guid}"
+@using Microsoft.EntityFrameworkCore
+@using SharedData.Models
+
+@inject IDbContextFactory<AppDbContext> DbFactory
+@inject NavigationManager NavManager
+
+@rendermode InteractiveServer
+
+@if (author == null)
+{
+    <div class="episodes-loading">Loading...</div>
+}
+else
+{
+    @* var book = author.Books?.FirstOrDefault(); *@
+    <div class="details-card bio-details-card">
+        <div class="d-flex w-100">
+            <button class="btn-back" @onclick="@(() => NavManager.NavigateTo("/biosAndBooks"))">&larr; Back to Bios and Books</button>
+        </div>
+        <div class="images mb-4">
+            @if (author.Picture != null)
+            {
+                <img class="bio-author-img author-img" src="data:image/png;base64,@Convert.ToBase64String(author.Picture)" alt="Author" />
+            }
+            @foreach (var book in author.Books ?? [])
+            {
+                <img class="bio-book-img book-img" src="data:image/png;base64,@Convert.ToBase64String(book.Picture)" alt="Book" />
+
+            }
+            @* @if (book?.Picture != null)
+            {
+                <img class="bio-book-img book-img" src="data:image/png;base64,@Convert.ToBase64String(book.Picture)" alt="Book" />
+            } *@
+        </div>
+        <div class="bio-details-info">
+            <h1 class="bio-author-name author-name">@author.Name</h1>
+            <div class="bio-details-description">
+                @author.Description
+            </div>
+            @foreach (var book in author.Books ?? [])
+            {
+                <h2 class="book-name my-2" style="font-size: 1.4rem;">@book.Name</h2>
+                <div class="bio-details-book-description">
+                    @book.Description
+                </div>
+            }
+@*             @if (book != null)
+            {
+                <h2 class="book-name" style="font-size: 1.4rem;">@book.Name</h2>
+                <div class="bio-details-book-description">
+                    @book.Description
+                </div>
+            } *@
+            @if (author.Episodes != null && author.Episodes.Any())
+            {
+                <div class="bio-details-episodes">
+                    <h3>Featured Episodes</h3>
+                    <ul>
+                        @foreach (var ep in author.Episodes)
+                        {
+                            <li>
+                                <div class="episode-link" @onclick="@(() => NavManager.NavigateTo($"/episodeDetails/{ep.Id}"))">
+                                    @if (!string.IsNullOrWhiteSpace(ep.Link))
+                                    {
+                                        <img class="episode-thumb" src="@($"https://img.youtube.com/vi/{ep.Link}/0.jpg")" alt="YouTube thumbnail" />
+                                    }
+                                    @ep.Title
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public Guid Id { get; set; }
+    private Author? author;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await using var db = await DbFactory.CreateDbContextAsync();
+        author = await db.Authors
+            .Include(e => e.Books)
+            .Include(e => e.Episodes)
+            .FirstOrDefaultAsync(e => e.Id == Id);
+    }
+}

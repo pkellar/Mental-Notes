@@ -1,0 +1,61 @@
+﻿@page "/research"
+@using global::Pages
+
+@inject NavigationManager NavManager
+
+@rendermode InteractiveServer
+
+@inherits ResearchBase
+
+
+<div class="title-container">
+    <h1>Research</h1>
+</div>
+
+@if (Researches is null)
+{
+    <p>Loading...</p>
+}
+else if (Researches.Count == 0)
+{
+    <div class="content-empty">Coming Soon</div>
+}
+else
+{
+    <nav class="research-toc-floating @(TableOfContentsVisible ? "" : "toc-hidden")">
+        <div class="d-flex flex-row">
+            <div>
+                <div class="research-toc-toggle-btn">
+                    <button class="btn btn-secondary d-flex align-items-center h-100 p-0 px-2" @onclick="ToggleTableOfContents">
+                        <i class="fa-solid @(TableOfContentsVisible ? "fa-arrow-right" : "fa-arrow-left")"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="research-toc-contents">
+                <div class="research-toc-floating-title">Jump to Section</div>
+                <ul>
+                    @foreach (var research in Researches)
+                    {
+                        <a class="btn btn-light btn-sm mb-2 w-100 text-start" href="research#@GetAnchorId(research)" @onclick:stopPropagation="true">
+                            @research.Title
+                        </a>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="research-content">
+        @foreach (var research in Researches)
+        {
+            <section id="@GetAnchorId(research)" class="research-section">
+                <div class="research-html-content" @key="research.Id">
+                    @((MarkupString)research.Content)
+                </div>
+            </section>
+        }
+    </div>
+}
+
+@code {
+    string GetAnchorId(SharedData.Models.Research research) => $"research-{research.Id}";
+}
