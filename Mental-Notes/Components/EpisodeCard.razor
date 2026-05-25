@@ -1,0 +1,37 @@
+﻿@inject NavigationManager NavManager
+
+@rendermode InteractiveServer
+@inherits EpisodeCardBase
+
+@if (ep != null)
+{
+    <div class="episode-card" @onclick="@(() => NavManager.NavigateTo($"/episodeDetails/{ep.Id}"))" tabindex="0">
+        <div class="episode-card-header">
+            <span class="episode-title">@ep.Title</span>
+            <span class="episode-date">@ep.Published.ToString("MMM dd, yyyy")</span>
+        </div>
+        <div class="episode-info">
+            <div class="images">
+                @if (ep.Author?.Picture != null)
+                {
+                    <img class="author-img" src="data:image/png;base64,@Convert.ToBase64String(ep.Author.Picture)" alt="Author" />
+                }
+                @if (ep.Book?.Picture != null)
+                {
+                    <img class="book-img" src="data:image/png;base64,@Convert.ToBase64String(ep.Book.Picture)" alt="Book" />
+                }
+            </div>
+            <div class="names-container">
+                <div class="author-name">@ep.Author?.Name</div>
+                @if (!string.IsNullOrWhiteSpace(ep.Book?.Name))
+                {
+                    <div class="book-name">@ep.Book?.Name</div>
+                }
+            </div>
+        </div>
+
+        <div class="description">
+            @ep.Description
+        </div>
+    </div>
+}

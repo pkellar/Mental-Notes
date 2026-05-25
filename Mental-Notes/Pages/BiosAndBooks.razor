@@ -1,0 +1,64 @@
+﻿@page "/biosAndBooks"
+@using global::Pages
+@inject NavigationManager NavManager
+
+@rendermode InteractiveServer
+
+@inherits BiosAndBooksBase
+
+<div class="title-container">
+    <h1>Bios & Books</h1>
+</div>
+
+@if (Authors == null)
+{
+    <div class="content-loading">Loading...</div>
+}
+else if (Authors.Count == 0)
+{
+    <div class="content-empty">No authors found.</div>
+}
+else
+{
+    <div class="bios-list">
+        @foreach (var au in Authors)
+        {
+            @* var book = au.Books?.FirstOrDefault(); *@
+            <div class="bio-card" @onclick="@(() => NavManager.NavigateTo($"/biosAndBooksDetails/{au.Id}"))" tabindex="0">
+                <div class="images mb-0">
+                    @if (au.Picture != null)
+                    {
+                        <img class="author-img" src="data:image/png;base64,@Convert.ToBase64String(au.Picture)" alt="Author" />
+                    }
+
+                    @foreach (var book in au.Books ?? [])
+                    {
+                        @if (book?.Picture != null)
+                        {
+                            <img class="book-img" src="data:image/png;base64,@Convert.ToBase64String(book.Picture)" alt="Book" />
+                        }
+                    }
+
+                </div>
+                <div>
+                    <div class="names-container mt-3 mb-3">
+                        <span class="author-name">@au.Name</span>
+
+                        <div class="d-flex">
+                            @foreach (var book in au.Books ?? [])
+                            {
+                                @if (!string.IsNullOrWhiteSpace(book?.Name))
+                                {
+                                    <span class="book-name">@book.Name</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="bio-description">
+                    @au.Description
+                </div>
+            </div>
+        }
+    </div>
+}

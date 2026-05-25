@@ -1,0 +1,77 @@
+﻿@page "/episodeDetails/{Id:guid}"
+@using Microsoft.EntityFrameworkCore
+@using SharedData.Models
+
+@inject IDbContextFactory<AppDbContext> DbFactory
+@inject NavigationManager NavManager
+
+@rendermode InteractiveServer
+
+@if (episode == null)
+{
+    <div class="episodes-loading">Loading...</div>
+}
+else
+{
+    <div class="details-card">
+        <div class="episode-card-header">
+            <button class="btn-back" @onclick="@(() => NavManager.NavigateTo("/episodes"))">&larr; Back to Episodes</button>
+            <span class="episode-date">@episode.Published.ToString("MMM dd, yyyy")</span>
+        </div>
+        <h1 class="episode-title">@episode.Title</h1>
+        <div class="episode-info episode-info-link" @onclick="@(() => NavManager.NavigateTo($"/biosAndBooksDetails/{episode.Author?.Id}"))">
+            <div class="images">
+                @if (episode.Author?.Picture != null)
+                {
+                    <img class="author-img" src="data:image/png;base64,@Convert.ToBase64String(episode.Author.Picture)" alt="Author" />
+                }
+                @if (episode.Book?.Picture != null)
+                {
+                    <img class="book-img" src="data:image/png;base64,@Convert.ToBase64String(episode.Book.Picture)" alt="Book" />
+                }
+            </div>
+            <div class="names-container">
+                <div class="author-name">@episode.Author?.Name</div>
+                @if (!string.IsNullOrWhiteSpace(episode.Book?.Name))
+                {
+                    <div class="book-name">@episode.Book?.Name</div>
+                }
+            </div>
+        </div>
+        <div class="description">
+            @episode.Description
+        </div>
+        @if (!string.IsNullOrWhiteSpace(episode.Link))
+        {
+            <div class="episode-youtube">
+                <iframe width="560" height="315"
+                        src="@($"https://www.youtube.com/embed/{episode.Link}")"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+            </div>
+        }
+        @if (!string.IsNullOrWhiteSpace(episode.AudioBlobUrl))
+        {
+            <div class="episode-audio">
+                <audio controls src="@episode.AudioBlobUrl" class="custom-audio"></audio>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public Guid Id { get; set; }
+    private Episode? episode;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await using var db = await DbFactory.CreateDbContextAsync();
+        episode = await db.Episodes
+            .Include(e => e.Author)
+            .Include(e => e.Book)
+            .FirstOrDefaultAsync(e => e.Id == Id);
+    }
+}

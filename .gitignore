@@ -361,3 +361,19 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore AdminApp project completely (do not push anything from AdminApp)
+AdminApp/
+AdminApp/**
+
+# Ignore development appsettings and local secrets
+**/appsettings*.Development.json
+secrets.json
+.env
+.env.*.local
+
+# Ignore publish profiles / deploy settings (avoid committing publish credentials)
+**/Properties/PublishProfiles/
+*.pubxml
+*.publishsettings
+PublishScripts/

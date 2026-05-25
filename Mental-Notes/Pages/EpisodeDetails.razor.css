@@ -1,0 +1,66 @@
+﻿.episode-youtube {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+    .episode-youtube iframe {
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(44, 62, 80, 0.10);
+        width: 100%;
+        max-width: 700px;
+        height: 400px;
+    }
+
+.episode-audio {
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+    .episode-audio audio,
+    .custom-audio {
+        width: 100%;
+        max-width: 400px;
+        min-width: 200px;
+        background: var(--accent-green, #A5D6A7);
+        border-radius: 1.2rem;
+        box-shadow: 0 2px 12px rgba(44, 62, 80, 0.10);
+        padding: 0.5rem 0.5rem;
+        outline: none;
+    }
+
+.episode-info-link {
+    cursor: pointer;
+}
+
+    .episode-info-link:focus, .episode-info-link:hover {
+        transform: translateY(-2px) scale(1.02);
+    }
+
+        .episode-info-link:hover .author-img,
+        .episode-info-link:focus .author-img,
+        .episode-info-link:hover .book-img,
+        .episode-info-link:focus .book-img {
+            border-color: var(--accent-green, #A5D6A7);
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.16);
+        }
+
+        .episode-info-link:hover .book-name,
+        .episode-info-link:focus .book-name {
+            border: 1px solid var(--accent-green, #A5D6A7);
+            color: var(--accent-green, #A5D6A7);
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.16);
+        }
+
+@media (max-width: 600px) {
+    .episode-audio audio,
+    .custom-audio {
+        max-width: 98vw;
+        min-width: 0;
+        font-size: 0.95rem;
+        padding: 0.3rem 0.2rem;
+    }
+}

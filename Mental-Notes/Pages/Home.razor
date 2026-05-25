@@ -1,0 +1,85 @@
+﻿@page "/"
+@using global::Pages
+@inject NavigationManager NavManager
+
+@rendermode InteractiveServer
+
+@inherits HomeBase
+
+<PageTitle>Mental Notes</PageTitle>
+
+<div class="home-hero">
+    <div class="home-hero-image">
+        <img src="/symmone.jpg" alt="Symmone Gauer" />
+    </div>
+    <div class="home-hero-text">
+        <h1 class="title">Welcome, my new friend, to Mental Notes.</h1>
+
+        <button class="btn btn-secondary about-btn w-100 mb-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            About Me
+            <i class="fa-solid fa-chevron-down collapse-chevron" aria-hidden="true"></i>
+        </button>
+
+        <div class="intro-longform @(IsMobile ? "collapse" : "")" id="collapseExample">
+            <p>Hello! My name is Symmone Gauer, and I struggle with mental illness–but that’s not the only thing about me. But that’s not the only interesting thing about me.</p>
+            <p>I was born and raised in South Dakota but always fancied the East Coast and Western Europe, namely Boston and Paris (je parle français!). I studied journalism in undergrad and worked in the field for a time, but it, quite frankly, wasn’t for me. Was I good at it? I like to think so! But it wasn’t my passion, and working in the news world was negatively affecting my already-fragile mental health state. So I left and started a graduate program at Rosemont College in Philadelphia, where I am now on the road to obtaining a master’s degree in book publishing. The dream.</p>
+            <p>I live with generalized anxiety disorder, social anxiety disorder, and borderline personality disorder (and I’ve certainly had a therapist or two bring up depression on occasion). When I had the idea for this podcast, I was immediately super excited to be an advocate for mental health, but then I quickly realized something else: this project meant I myself had to be vulnerable and open about my own mental health struggles–and that was scary.</p>
+            <p><strong>It is scary. But I believe it’s worth it.</strong></p>
+            <p>This podcast is my thesis project. My method: explore how young adult fiction authors write about mental illness in a way that mirrors reality and stems from their lived experiences. My goal: create a space where young people feel seen and understood while learning that conversation about mental health can help fight the stigma against it. Books have long since helped us feel less alone–to feel seen and understood. That is my hope for you, dear listeners.</p>
+            <p>Maybe you’ll even find a new book to read while you’re at it.</p>
+            <p><em>P.s. Some of these episodes discuss suicide and other difficult topics. If you or a loved one is affected by anything discussed in this episode, know there is always help:</em></p>
+            <ul class="resources">
+                <li><strong>National Suicide & Crisis Lifeline:</strong> 988 or <a href="https://988lifeline.org" target="_blank" rel="noopener">988lifeline.org</a></li>
+                <li><strong>National Alliance on Mental Illness HelpLine:</strong> 1-800-950-NAMI or <a href="https://nami.org" target="_blank" rel="noopener">nami.org</a></li>
+                <li><strong>The notOK App:</strong> <a href="https://notokapp.com" target="_blank" rel="noopener">notokapp.com</a></li>
+            </ul>
+            <p class="thanks">P.p.s. I also want to give a loving thanks to Patrick, who not only built this entire website from scratch, but also pushed me to finish this project and stuck with me–even when I was not at my mental best ❤</p>
+        </div>
+    </div>
+</div>
+
+<div class="home-socials section-wrapper">
+    <div class="title-container mb-0">
+        <h1>Connect</h1>
+    </div>
+    <div class="social-grid social-grid-large">
+        <a href="https://www.instagram.com/mental.notes.pod/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/%40MentalNotes-Pod" target="_blank" rel="noopener" aria-label="YouTube"> <i class="fa-brands fa-youtube"></i></a>        
+        <a href="https://open.spotify.com/show/6oAlu2Gp5lrIWleqMEIIpy?si=lBytwMFyRMe1ZUebwuXS6g" target="_blank" rel="noopener" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://podcasts.apple.com/us/podcast/mental-notes/id1852394893 " target="_blank" rel="noopener" aria-label="Apple Music / Podcasts"><i class="fa-brands fa-itunes-note"></i></a>
+    </div>
+</div>
+
+
+<div class="section-wrapper">
+    <div class="title-container">
+        <h1>Latest Content</h1>
+    </div>    
+
+    @if (MostRecentEpisode == null && MostRecentResearch == null)
+    {
+        <div class="content-empty">No content yet.</div>
+    }
+    else
+    {
+        @foreach (var block in GetOrderedLatest())
+        {
+            if (block.Type == "episode" && block.Episode != null)
+            {
+                <EpisodeCard EpisodeId="block.Episode.Id" />
+            }
+            else if (block.Type == "research" && block.Research != null)
+            {
+                <div class="episode-card" @onclick="@(() => NavManager.NavigateTo($"/research#research-{block.Research.Id}"))">
+                    <div class="episode-card-header">
+                        <span class="episode-title">@block.Research.Title</span>
+                        <span class="episode-date">@block.Research.ReleaseDate.ToString("MMM dd, yyyy")</span>
+                    </div>
+                    <div class="description">
+                        @((MarkupString)block.PreviewHtml)
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>

@@ -1,0 +1,18 @@
+﻿.episode-card {
+    background: linear-gradient(135deg, #E3F9F8 0%, #E8F5E9 100%);
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+    border: 1px solid #e3e3e3;
+    outline: none;
+}
+
+    .episode-card:focus, .episode-card:hover {
+        box-shadow: 0 4px 24px rgba(44, 62, 80, 0.16);
+        transform: translateY(-2px) scale(1.02);
+        border-color: var(--accent-blue-light, #4DD0E1);
+        background: linear-gradient(135deg, #E0F7FA 0%, #C8E6C9 100%);
+    }

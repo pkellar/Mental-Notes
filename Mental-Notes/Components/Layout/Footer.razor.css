@@ -1,0 +1,40 @@
+﻿.site-footer {
+    height: 3rem;
+    background: var(--accent-green, #A5D6A7);
+    color: var(--accent-blue, #2b6777);
+    text-align: center;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.footer-social {
+    margin-left: 1.5rem;
+    display: inline-flex;
+    gap: 1.2rem;
+    vertical-align: middle;
+}
+
+    .footer-social a {
+        color: var(--accent-blue, #2b6777);
+        font-size: 1.5rem;
+        transition: color 0.2s;
+    }
+
+        .footer-social a:hover {
+            color: var(--accent-white, #eafdff);
+        }
+
+@media (max-width:600px) {
+    .site-footer {
+        gap: 0;
+    }
+
+    .footer-social {
+        margin-left: 0;
+    }
+}
