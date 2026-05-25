@@ -34,4 +34,8 @@ Mental Notes is a Blazor Server web application (Interactive Server render mode)
 - If sensitive data was accidentally committed, rotate the exposed credentials immediately and scrub history (BFG or `git filter-repo`).
 
 ## License
-- Add a license to this repository (e.g. MIT) if you want to allow reuse.
+This repository is proprietary software owned by Patrick Kellar.
+
+See `LICENSE.md` for the full terms. In short: Copyright (c) 2026 Patrick Kellar. All rights reserved.
+
+You may not use, copy, modify, distribute, publish, sublicense, or transfer the Software without prior written permission from the copyright owner.
